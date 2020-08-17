@@ -22,8 +22,15 @@ SUB = 23
 LDI = 0b10000010
 PRN = 0b01000111
 
-# some sort of memory
+# some sort of memory (lets refactor this to load in opcodes from a file)
+
+def load_memory(filename):
+    # TODO do some logic here
+    pass
+
 mem = [0] * 256
+
+
 memory = [
     PRINT_VLAD,
     SAVE,
@@ -54,6 +61,11 @@ registers = [0] * 10
 
 # size of opcode
 op_size = 1
+
+# TODO: grab any args
+
+# TODO: load opcodes in to memory
+
 
 # REPL to run once per cycle of CPU
 # inside this we will have our FETCH, DECODE, EXECUTE CYCLE
