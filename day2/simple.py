@@ -1,5 +1,5 @@
 # Let's build a data driven machine!
-
+import sys
 # What do we need to have our machine working?
 """
 - Some sort of memory
@@ -12,11 +12,11 @@
 """
 
 # Operations that we can perform
-PRINT_VLAD = 1
-HALT = 2
+PRINT_VLAD = 2
+HALT = 1
 PRINT_NUM = 3
-PRINT_REG = 4
-SAVE = 5
+SAVE = 4
+PRINT_REG = 5
 ADD = 6
 SUB = 23
 LDI = 0b10000010
@@ -26,31 +26,54 @@ PRN = 0b01000111
 
 def load_memory(filename):
     # TODO do some logic here
-    pass
+    try:
+        address = 0
+        with open(filename) as f:
+            for line in f:
+                comment_split = line.split("#")
+                n = comment_split[0].strip()
 
-mem = [0] * 256
+                if n == '':
+                    continue
+
+                val = int(n, 2)
+                # store val in memory
+                memory[address] = val
+
+                address += 1
+
+                # print(f"{x:08b}: {x:d}")
+
+    except FileNotFoundError:
+        print(f"{sys.argv[0]}: {filename} not found")
+        sys.exit(2)
 
 
-memory = [
-    PRINT_VLAD,
-    SAVE,
-    300,
-    3,
-    PRINT_REG,
-    3,
-    SAVE,
-    24,
-    2,
-    ADD,
-    2,
-    3,
-    PRINT_REG,
-    2,
-    PRINT_NUM,
-    120,
-    PRINT_VLAD,
-    HALT
-]
+memory = [0] * 256
+
+
+# memory = [
+#     PRINT_VLAD,
+#     SAVE,
+#     300,
+#     3,
+#     PRINT_REG,
+#     3,
+#     SAVE,
+#     24,
+#     2,
+#     ADD,
+#     2,
+#     3,
+#     PRINT_REG,
+#     2,
+#     PRINT_NUM,
+#     120,
+#     PRINT_VLAD,
+#     HALT
+# ]
+
+
 # keep track of running?
 running = True
 
@@ -63,8 +86,11 @@ registers = [0] * 10
 op_size = 1
 
 # TODO: grab any args
-
+if len(sys.argv) != 2:
+    print("usage: simple.py filename")
+    sys.exit(1)
 # TODO: load opcodes in to memory
+load_memory(sys.argv[1])
 
 
 # REPL to run once per cycle of CPU

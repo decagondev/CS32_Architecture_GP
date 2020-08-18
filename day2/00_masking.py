@@ -40,22 +40,21 @@
 # operand_size = ADD >> 6
 # add_to_pc = operand_size + 1
 
-memory = [
-    LDI, 
-    12,
-    2,
-    PRINT_VLAD <==== PC
-]
+# memory = [
+#     LDI, 
+#     12,
+#     2,
+#     PRINT_VLAD <==== PC
+# ]
 
 # # FETCH
 # ir = 0b10000010
 
 # # DECODE
-# instruction_length = (ir >> 6) + 1
+# add_to_pc = (ir >> 6) + 1
 
 # if IR == LDI:
 #     # do the ldi thing
-#     add_to_pc = 3
 #     pass
 # elif IR == ADD:
 #     # do the add thing
