@@ -2,11 +2,16 @@
 ADD = 23
 SUB = 34
 PRINT_SOME_STUFF = 50
+SOME_THING = 34
 
 
 def op_add(op1, op2):
     op1 += op2
     return 2
+
+def some_function_i_just_made(op1, op2):
+    print("Doing something here...")
+    return 1
 
 def op_sub(op1, op2):
     op1 -= op2
@@ -19,7 +24,8 @@ def op_print_some_stuff(op1, op2):
 bt = {
     ADD: op_add,
     SUB: op_sub,
-    PRINT_SOME_STUFF: op_print_some_stuff
+    PRINT_SOME_STUFF: op_print_some_stuff,
+    SOME_THING: some_function_i_just_made
 }
 
 """
